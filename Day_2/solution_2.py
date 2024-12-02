@@ -8,6 +8,7 @@ def read_in_file(filename):
 
 def part1(my_list):
     safe = 0
+    part_2 = []
     for i in range(len(my_list)):
         is_safe = True
         if my_list[i] == sorted(my_list[i]) or my_list[i] == sorted(my_list[i], reverse=True):
@@ -15,11 +16,13 @@ def part1(my_list):
                 absolute = abs(my_list[i][j] - my_list[i][j + 1])
                 if absolute == 0 or absolute > 3:
                     is_safe = False
+                    part_2.append(my_list[i])
                     break
             if is_safe:
                 safe += 1
-
-    return safe
+        else:
+            part_2.append(my_list[i])
+    return safe, part_2
 
 
 def pos_neg_rest(lister):
@@ -65,22 +68,18 @@ def part2(my_list):
                             break
 
                     if is_safe:
-                        print(absolute_list,i,my_list[i])
                         safe += 1
                         break
-
-
-
 
     return safe
 
 
 def main():
     my_list = read_in_file("input.txt")
-    result = part1(my_list)
+    result,part_2 = part1(my_list)
     print(f"Part 1 results: {result}")
-    result = part2(my_list)
-    print(f"Part 2 results: {result}")
+    result2 = part2(part_2)
+    print(f"Part 2 results: {result + result2}")
 
 
 if __name__ == "__main__":
