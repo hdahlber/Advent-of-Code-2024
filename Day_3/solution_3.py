@@ -32,7 +32,6 @@ def part2(second_list):
     flag = True
     pattern = r"\d+|don't\(\)|do\(\)"
     for match in second_list:
-        print(match)
         x = re.findall(pattern, match)
 
         if len(x) == 2 and flag == True:
