@@ -17,14 +17,16 @@ def part_1(filename, possible):
 
                     if ops[i - 1] == "+":
                         number += values[i]
-                    else:
+                    elif ops[i - 1] == "*":
                         number *= values[i]
+                    else:
+                        number = int(f"{number}{values[i]}")
 
                 return number
 
             for ops in product(possible, repeat=len(values) - 1):
                 if check_if_ok(ops) == ans:
-
+                    print(summer)
                     summer += ans
                     break
 
@@ -34,7 +36,8 @@ def part_1(filename, possible):
 def main():
     result = part_1("input.txt", (["+", "*"]))
     print(f"Part 1 results: {result}")
-    #print(f"Part 2 results: {result2}")
+    result2 = part_1("input.txt", (["+", "||", "*"]))
+    print(f"Part 2 results: {result2}")
 
 
 if __name__ == "__main__":
