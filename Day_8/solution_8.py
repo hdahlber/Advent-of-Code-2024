@@ -27,14 +27,17 @@ def read_in_file(filename):
 
 
 def part_1(antenna_locations,length):
-    antinodes =  set()
+    antinodes = set()
     antinodes_part2 = set()
+
     for antenna in antenna_locations:
         location = antenna_locations[antenna]
         #print("dsfsdff",location)
         for a, b in combinations(location, r=2):
-            antinodes_part2.add(a)
-            antinodes_part2.add(b)
+            tot_items = sum(len(v) for v in antenna_locations.values())
+            if tot_items > 2:
+                antinodes_part2.add(a)
+                antinodes_part2.add(b)
             #print(a,b)
             # (1,1) och (3,4)
             #row = 1 - (3-1) = 1-2 = -1
@@ -76,6 +79,7 @@ def part_1(antenna_locations,length):
                 else:
                     #print("flag 2", flag2)
                     flag2 = False
+
 
     return len(antinodes), len(antinodes_part2)
 def main():
