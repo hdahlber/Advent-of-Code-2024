@@ -1,7 +1,7 @@
 from itertools import product
 
 
-def part_1(filename, possible):
+def part_12(filename, possible):
     with open(filename, "r") as file:
         summer = 0
         lines = file.read().splitlines()
@@ -26,7 +26,7 @@ def part_1(filename, possible):
 
             for ops in product(possible, repeat=len(values) - 1):
                 if check_if_ok(ops) == ans:
-                    print(summer)
+                   #print(summer)
                     summer += ans
                     break
 
@@ -34,9 +34,9 @@ def part_1(filename, possible):
 
 
 def main():
-    result = part_1("input.txt", (["+", "*"]))
+    result = part_12("input.txt", (["+", "*"]))
     print(f"Part 1 results: {result}")
-    result2 = part_1("input.txt", (["+", "||", "*"]))
+    result2 = part_12("input.txt", (["+", "||", "*"]))
     print(f"Part 2 results: {result2}")
 
 
