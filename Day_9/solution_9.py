@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 
 
 def read_in_file(filename):
@@ -43,19 +44,55 @@ def part_1(start_list):
                 else:
                     back_index -= 1
 
-
-
-
-
-
     for index in range(len(ans)):
         summer += ans[index] * index
     return summer
 
+def part_2(filename):
+    with open(filename, "r") as file:
+        line = file.read().strip()
+        results = []
+        id = 0
+        is_value = True
+        for char in line:
+            number = int(char)
+            if is_value:
+
+                results.append([id] * number)
+                id += 1
+                is_value = False
+            else:
+                results.append([None]* number)
+                is_value = True
+
+        print(results)
+        for i in reversed(results):
+            if None not in i:
+                for j in results:
+                    if None in j:
+                        if j.count(None) >= len(i):
+                            
+                            for index in range(len(i)):
+                                j[index] = i[index]
+                            print(j)
+
+                        break
+
+
+
+
+
+
+
+
+        return None
+
 def main():
-   start_list =read_in_file("test.txt")
-   result = part_1(start_list)
-   print(f"Part 1 results: {result}")
+   #start_list =read_in_file("test.txt")
+   #result = part_1(start_list)
+   #print(f"Part 1 results: {result}")
+   result = part_2("test.txt")
+   print(f"Part 2 results: {result}")
 
 
 
