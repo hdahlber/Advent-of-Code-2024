@@ -3,12 +3,12 @@ turn_right = {'^': '>', '>': 'v', 'v': '<', '<': '^'}
 
 
 def read_in_file(filename):
-
+    grid_list =[]
     with open(filename, "r") as file:
         data = file.read()
         for line in data.splitlines():
             grid_list.append(list(line))
-    )
+    
 
     return grid_list
 
