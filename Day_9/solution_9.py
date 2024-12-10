@@ -2,13 +2,13 @@ def read_in_file(filename):
     with open(filename, "r") as file:
         line = file.read().strip()
         results = []
-        id = 0
+        id_num = 0
         is_value = True
         for char in line:
             number = int(char)
             if is_value:
-                results += [id] * number
-                id += 1
+                results += [id_num] * number
+                id_num += 1
                 is_value = False
             else:
                 results += [False] * number
@@ -51,14 +51,14 @@ def part_2(filename):
     with open(filename, "r") as file:
         line = file.read().strip()
         results = []
-        id = 0
+        id_num = 0
         is_value = True
         for char in line:
             number = int(char)
             if is_value:
 
-                results.append([id] * number)
-                id += 1
+                results.append([id_num] * number)
+                id_num += 1
                 is_value = False
             else:
                 results.append([None] * number)
