@@ -42,6 +42,7 @@ def part_2(filename, blinks):
 
 
 def main():
+
     blinks = 25
     stones_list = read_in_file("input.txt")
     result = part_1(stones_list, blinks)
