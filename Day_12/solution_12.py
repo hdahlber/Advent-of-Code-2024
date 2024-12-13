@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 def read_in_file(filename):
     grid_list = []
     with open(filename, "r") as file:
