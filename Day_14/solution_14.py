@@ -83,20 +83,21 @@ def part_2(robots):
                 prev_row = grid[i - 1]
                 if has_consecutive_robots(row, 7) and has_consecutive_robots(prev_row, 5):
                     print("Grid at time:", seconds)
+                    answer = seconds
                     file.write(f"Grid at time {seconds}:\n")
                     for row in grid:
                         file.write("".join(row) + "\n")
                     break
             visited[grid_tuple] = seconds
             seconds += 1
-
+    return answer
 
 def main():
     robots = read_in_file("input.txt")
     result, x = part_1(robots, 100)
     print(f"Part 1 results: {result}")
-    part_2(robots)
-    #print(f"Part 2 results: {result2}")
+    result2 = part_2(robots)
+    print(f"Part 2 results: {result2}")
 
 
 if __name__ == "__main__":
