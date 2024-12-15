@@ -30,6 +30,7 @@ def min_max_machine(buttons, prize):
     dx2, dy2, cost2 = buttons[1]
     px, py = prize
     min_tokens = 1000000000
+
     found_solution = False
     for a_presses in range(1,101):
         for b_presses in range(1,101):
@@ -41,24 +42,43 @@ def min_max_machine(buttons, prize):
                 min_tokens = min(min_tokens, tokens)
     return min_tokens if found_solution else 0
 
+def linear_programming(buttons,prize):
+    ax, ay, cost1 = buttons[0] # a button
+    bx, by, cost2 = buttons[1] # b button
+    extra = 10000000000000
+    px, py = prize
+    px = px + extra
+    py = py + extra
+    i = (px * by - bx * py)//(by * ax - bx * ay)
+    j = (py - ay * i) // by
+    if i < 0 or j < 0:
+        return 0
+    elif ax * i + bx * j == px and ay * i + by * j == py:
+        return cost1 * int(i) + int(j) * cost2
+    else:
+        return 0
+
 
 def part_1(machines):
 
     total_tokens = 0
+    total_tokens2 = 0
     for machine in machines:
         result = min_max_machine(machine['buttons'], machine['prize'])
+        result2 = linear_programming(machine['buttons'], machine['prize'])
         total_tokens += result
+        total_tokens2 += result2
 
-    return total_tokens
+    return total_tokens, total_tokens2
 
 
 
 
 def main():
     machines = read_in_file("input.txt")
-    result = part_1(machines)
+    result , result2 = part_1(machines)
     print(f"Part 1 results: {result}")
-    #print(f"Part 2 results: {result2}")
+    print(f"Part 2 results: {result2}")
 
 
 if __name__ == "__main__":
