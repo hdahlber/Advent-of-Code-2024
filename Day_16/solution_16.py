@@ -1,7 +1,7 @@
 import networkx as nx
 
 def read_in_file(filename):
-    with open(filename) as file:
+    with open(filename, "r") as file:
         read = file.read().strip().split("\n")
     return read
 
@@ -57,7 +57,7 @@ def part_2(graph,start):
 def main():
     file = read_in_file("input.txt")
     graph, start, end = make_graph(file)
-    result = nx.shortest_path_length(graph, start, "end", weight="weight",method='dijkstra')
+    result = nx.shortest_path_length(graph, start, "end", weight="weight",method="dijkstra")
     print(f"Part 1 results: {result}")
     result2 = part_2(graph,start)
     print(f"Part 2 results: {result2}")

@@ -77,16 +77,14 @@ def part_2(edges):
             #print((row, column), direction)
             rows_set.add(edge)
             if ((row, column - 1), "up") not in rows_set:
-                #print("aadddd 1")
                 summer3 += 1
         if direction == "down":
             #print((row, column), direction)
             rows_set.add(edge)
             if ((row, column - 1), "down") not in rows_set:
-                #print("aadddd 2")
                 summer3 += 1
 
-    #print("-----------")
+
     for edge in sorted_edges_columns:
         ((row, column), direction) = edge
         if direction == "left":
@@ -99,7 +97,7 @@ def part_2(edges):
             if ((row - 1, column), "right") not in cols_set:
                 summer3 += 1
 
-    #print("---1111111111--")
+
     print(summer3)
     return summer3
 
