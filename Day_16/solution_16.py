@@ -45,13 +45,23 @@ def make_graph(file):
     return Graph, start, end
 
 
-
-
+def part_2(graph,start):
+    # https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html
+    paths =nx.all_shortest_paths(graph, start, "end", weight="weight", method="dijkstra")
+    nodes = set()
+    for path in paths:
+        for edge in path:
+            nodes.add(edge[0])
+    print(nodes)
+    return len(nodes)-1 # end node remove
 def main():
     file = read_in_file("input.txt")
     graph, start, end = make_graph(file)
-    result = nx.shortest_path_length(graph, start, "end", weight="weight")
+    result = nx.shortest_path_length(graph, start, "end", weight="weight",method='dijkstra')
     print(f"Part 1 results: {result}")
+    result2 = part_2(graph,start)
+    print(f"Part 2 results: {result2}")
+
 
 
 if __name__ == "__main__":
