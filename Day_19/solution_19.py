@@ -17,7 +17,6 @@ def can_form_design(towels, design):
             remaining_design = design[len(pattern):]
             if can_form_design(towels,remaining_design):
                 return True
-
     return False
 
 
