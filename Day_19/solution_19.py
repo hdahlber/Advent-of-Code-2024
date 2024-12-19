@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def read_in_file(filename):
     with open(filename, "r") as file:
         lines = file.readlines()
@@ -15,7 +18,7 @@ def can_form_design(towels, design):
     for pattern in towels:
         if design.startswith(pattern):
             remaining_design = design[len(pattern):]
-            if can_form_design(towels,remaining_design):
+            if can_form_design(towels, remaining_design):
                 return True
     return False
 
@@ -33,13 +36,47 @@ def part_1(towel_patterns, designs):
     return summer
 
 
+def process_design(towels, design):
+    count = 0
+    design_dict = {design: 1}
+
+    while True:
+        sub_dict = {}
+        for substring, current_count in design_dict.items():
+            for i in range(1, len(substring) + 1):
+                front_string = substring[:i]
+                if front_string in towels:
+                    remaining_design = substring[i:]
+                    if remaining_design == "":
+                        count += current_count
+                    #print("remaining_design:", remaining_design, "frontstring",front_string)
+                    if remaining_design in sub_dict:
+                        sub_dict[remaining_design] += current_count
+                    else:
+                        sub_dict[remaining_design] = current_count
+
+        if not sub_dict:
+            break
+
+        design_dict = sub_dict
+
+    return count
+
+
+def part_2(towels, designs):
+    summer2 = 0
+    for design in designs:
+        summer2 += process_design(towels, design)
+    return summer2
+
+
 def main():
     towel_patterns, designs = read_in_file("input.txt")
     #print((towel_patterns, designs))
     result = part_1(towel_patterns, designs)
     print(f"Part 1 results: {result}")
-    #result2 = part_2(file)
-    #print(f"Part 2 results: {result2}")
+    result2 = part_2(towel_patterns, designs)
+    print(f"Part 2 results: {result2}")
 
 
 if __name__ == "__main__":
