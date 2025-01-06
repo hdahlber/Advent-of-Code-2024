@@ -22,13 +22,19 @@ def part_1(graph):
     #print(len(filtered_cliques))
     return len(filtered_cliques)
 
+def part_2(graph):
+    cliques = list(nx.find_cliques(graph))
+    biggest_clique = sorted(max(cliques, key=len))
+    result = ",".join(biggest_clique)
+    return result
 
 def main():
     file_edges = read_in_file("input.txt")
     graph = create_graph(file_edges)
     result = part_1(graph)
     print(f"Part 1 results: {result}")
-
+    result2 = part_2(graph)
+    print(f"Part 2 results: {result2}")
 
 if __name__ == "__main__":
     main()
